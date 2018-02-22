@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Abstract="True" Name="SlimeProductBase" ParentName="ResourceBase">
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>6</DeteriorationRate>
+			<Mass>0.03</Mass>
+    </statBases>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+
+  <ThingDef ParentName="SlimeProductBase">
+    <defName>SlimeGlob</defName>
+    <label>slime glob</label>
+    <description>Glob extracted from a slain slime creature, used in mutagen recipes.</description>
+    <graphicData>
+      <texPath>Things/SlimeGlob</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>20</MarketValue>
+    </statBases>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>75</stackLimit>
+    <thingCategories>
+      <li>Items</li>
+    </thingCategories>
+	<comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>60</daysToRotStart>
+		<rotDestroys>true</rotDestroys>
+	  </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="SlimeProductBase">
+    <defName>SlimeGel</defName>
+    <label>slime gel</label>
+    <description>Gel like fluid extracted from a living slime, has a few uses in the lab or can be cooked into a very nutritious paste.</description>
+    <graphicData>
+      <texPath>Things/SlimeGel</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>20</MarketValue>
+    </statBases>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>50</stackLimit>
+    <thingCategories>
+      <li>Items</li>
+    </thingCategories>
+	<comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>40</daysToRotStart>
+		<rotDestroys>true</rotDestroys>
+	  </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="SlimeProductBase">
+    <defName>SlimePaste</defName>
+    <label>slime paste</label>
+    <description>Nutritious paste made from slime gel, not very tasty alone but the flavor cooks into meals quite well.</description>
+    <graphicData>
+      <texPath>Things/SlimePaste</texPath>
+    </graphicData>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <MarketValue>4</MarketValue>
+      <Mass>0.045</Mass>
+	  <MaxHitPoints>60</MaxHitPoints>
+    </statBases>
+    <comps>
+	  <li Class="CompProperties_FoodPoisoningChance">
+		<humanlikeOnly>true</humanlikeOnly>
+	  </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>22</daysToRotStart>
+		<rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <ingestible>
+      <preferability>RawBad</preferability>
+      <foodType>AnimalProduct, Fluid</foodType>
+      <nutrition>0.25</nutrition>
+    </ingestible>
+    <thingCategories>
+      <li>AnimalProductRaw</li>
+    </thingCategories>
+  </ThingDef>
+  
+  <RecipeDef>
+    <defName>MakeSlimePaste</defName>
+    <label>make slime paste</label>
+    <description>Processes slime gel into a paste that is edible and very nutritious.</description>
+    <jobString>Processing slime paste.</jobString>
+    <workAmount>70</workAmount>
+    <workSpeedStat>DrugProductionSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+	<allowMixingIngredients>true</allowMixingIngredients>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>SlimeGel</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <products>
+      <SlimePaste>20</SlimePaste>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>SlimePaste</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Foods</li>
+      </categories>
+    </defaultIngredientFilter>
+    <workSkill>Intellectual</workSkill>
+	<recipeUsers>
+      <li>DrugLab</li>
+    </recipeUsers>
+    <researchPrerequisite>MedicineProduction</researchPrerequisite>
+    <skillRequirements>
+        <Cooking>3</Cooking>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

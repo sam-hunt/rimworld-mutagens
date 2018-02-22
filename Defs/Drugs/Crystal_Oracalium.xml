@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableCrystalDrugBase">
+    <defName>Oracalium</defName>
+    <label>oracalium</label>
+    <description>A potent collection of dried and powdered herbs that is named for its use by Oracles in tribal societies. Supposedly has properties that help with divination. Low chance for it to be addictive. Repeated usage never loses it's spark.</description>
+    <graphicData>
+      <texPath>Things/Oracalium</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>500</WorkToMake>
+      <MarketValue>18</MarketValue>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+    <ingestible>
+      <foodType>Processed</foodType>
+      <joy>0.15</joy>
+      <drugCategory>Hard</drugCategory>
+      <baseIngestTicks>240</baseIngestTicks>
+      <ingestSound>Ingest_Snort</ingestSound>
+	  <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.21,0,0.05)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestHoldUsesTable>false</ingestHoldUsesTable>
+      <ingestCommandString>Snort {0}</ingestCommandString>
+      <ingestReportString>Snorting {0}.</ingestReportString>
+	  <useEatingSpeedStat>false</useEatingSpeedStat>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>OracaliumHigh</hediffDef>
+          <severity>0.60</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_OffsetNeed">
+          <need>Rest</need>
+          <offset>-0.03</offset>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>OracaliumLongTerm</hediffDef>
+          <severity>0.025</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>PsychiteRefining</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <PsychoidLeaves>6</PsychoidLeaves>
+	  <HerbalMedicine>1</HerbalMedicine>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Oracalium</chemical>
+        <addictiveness>0.04</addictiveness>
+        <minToleranceToAddict>0.05</minToleranceToAddict>
+        <existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+        <needLevelOffset>1</needLevelOffset>
+        <isCombatEnhancingDrug>true</isCombatEnhancingDrug>
+        <listOrder>100</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <HediffDef>
+    <defName>OracaliumHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on oracalium</label>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1.5</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+          <painFactor>0.65</painFactor>
+          <capMods>
+            <li>
+              <capacity>Moving</capacity>
+              <offset>-0.1</offset>
+            </li>
+            <li>
+              <capacity>Sight</capacity>
+              <offset>0.30</offset>
+            </li>
+          </capMods>
+        </li>
+      </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>OracaliumHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>OracaliumHigh</hediff>
+    <stages>
+      <li>
+        <label>high on oracalium</label>
+        <description>My mind feels open and clear! I am focused!</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- addiction -->
+  
+  <ChemicalDef>
+    <defName>Oracalium</defName>
+    <label>oracalium</label>
+    <addictionHediff>OracaliumAddiction</addictionHediff>
+    <toleranceHediff>OracaliumLongTerm</toleranceHediff>
+  </ChemicalDef>
+  
+  <NeedDef ParentName="CrystalDrugAddictionNeedBase">
+    <defName>Chemical_Oracalium</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>oracalium</label>
+    <description>Because of an oracalium addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>50</listPriority>
+  </NeedDef>
+  
+  <HediffDef ParentName="CrystalAddictionBase">
+    <defName>OracaliumAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>oracalium addiction</label>
+    <causesNeed>Chemical_Oracalium</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.04</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+        <restFallFactor>1.2</restFallFactor>
+        <socialFightChanceFactor>2.0</socialFightChanceFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+        <mentalStateGivers>
+          <li>
+            <mentalState>WanderPsychotic</mentalState>
+            <mtbDays>10</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="CrystalDrugLongTermBase">
+    <defName>OracaliumLongTerm</defName>
+    <label>oracle psionic</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.01</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>class: 1</label>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>0.10</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.50</minSeverity>
+        <label>class: 2</label>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>0.20</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>class: 3</label>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>0.30</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.92</minSeverity>
+        <label>class: 4</label>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>0.40</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>  
+
+  <ThoughtDef>
+    <defName>OracaliumWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>OracaliumAddiction</hediff>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>oracalium withdrawal</label>
+        <description>I just can't think straight.</description>
+        <baseMoodEffect>-15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>

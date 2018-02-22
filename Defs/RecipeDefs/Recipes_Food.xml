@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RecipeDef Name="MakeAmbrosiaIcedTea">
+    <defName>MakeAmbrosiaIcedTea</defName>
+    <label>make ambrosia iced tea</label>
+    <description>Make ambrosia iced tea, a calming beverage</description>
+    <jobString>Making iced tea.</jobString>
+    <workAmount>300</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+	<recipeUsers>
+		<li>ElectricStove</li>
+		<li>FueledStove</li>
+	</recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Ambrosia</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+	<fixedIngredientFilter>
+      <thingDefs>
+        <li>Ambrosia</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <AmbrosiaTea>2</AmbrosiaTea>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+  
+  <RecipeDef Name="MakeHearthBrew">
+    <defName>MakeHearthBrew</defName>
+    <label>make hearth brew</label>
+    <description>Make hearth brew, a mildly alcoholic drink that warms the body</description>
+    <jobString>Making hearth brew.</jobString>
+    <workAmount>400</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+	<recipeUsers>
+		<li>ElectricStove</li>
+		<li>FueledStove</li>
+	</recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawBerries</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+	<fixedIngredientFilter>
+      <thingDefs>
+        <li>RawBerries</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <HearthBrew>3</HearthBrew>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+
+</Defs>

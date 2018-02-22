@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--=============================== Tier 3: Hi-tech research bench ===================================-->
+
+	<ResearchTabDef>
+		<defName>MutagensAndConsumables</defName>
+		<label>Mutagens and Consumables</label>
+	</ResearchTabDef>
+	
+	
+	<ResearchProjectDef>
+		<defName>MutagenOne</defName>
+		<label>catalyst serum</label>
+		<description>Allows the creation of the catalyst serum, the first step for creating homemade mutagens</description>
+		<baseCost>1200</baseCost>
+		<tab>MutagensAndConsumables</tab>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MedicineProduction</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>MutagenTwo</defName>
+		<label>mutagen basics</label>
+		<description>Allows the creation of mutagenic slurries</description>
+		<baseCost>1200</baseCost>
+		<tab>MutagensAndConsumables</tab>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MutagenOne</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+</Defs>
